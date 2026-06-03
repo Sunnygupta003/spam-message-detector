@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-Powered Spam & Fake Message Detector. Protect yourself from phishing and scams.">
+    <title>FakeDetect AI | Advanced Message Analysis</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Main Style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="grain-overlay"></div>
+    <div class="mesh-gradient"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo-area">
+                <div class="logo-shield">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>FakeDetect<span>AI</span></h1>
+                    <p>Cyber Intelligence Engine</p>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span class="pulse"></span>
+                System Live
+            </div>
+        </header>
+
+        <main class="content-grid">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h2 class="glitch-text" data-text="Analyze. Detect. Protect.">Analyze. Detect. Protect.</h2>
+                <p>Paste any suspicious message below. Our neural engine will identify spam, scams, and phishing attempts with 97%+ accuracy.</p>
+            </section>
+
+            <!-- Input Area -->
+            <section class="analysis-card ripple-effect">
+                <div class="card-head">
+                    <div class="indicator"></div>
+                    <h3>Message Analysis Terminal</h3>
+                    <div class="char-count" id="charCounter">0 / 500</div>
+                </div>
+                <div class="input-container">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Type or paste message here... (e.g. 'Congratulations! You won a lottery...')"
+                        maxlength="500"
+                    ></textarea>
+                    
+                    <div class="controls">
+                        <button class="btn btn-secondary" id="clearBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 6L6 19M6 6l13 13"/>
+                            </svg>
+                            Clear
+                        </button>
+                        <button class="btn btn-primary" id="analyseBtn">
+                            <span>Analyze Message</span>
+                            <div class="btn-glow"></div>
+                            <div class="loader" id="btnLoader"></div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Result Section (Dynamic) -->
+            <section class="result-area hidden" id="resultCard">
+                <div class="result-card" id="resultContent">
+                    <div class="result-header">
+                        <div class="result-icon" id="resultIcon"></div>
+                        <div class="result-titles">
+                            <h4 id="resultVerdict">--</h4>
+                            <p id="resultSub">Preparing analysis results...</p>
+                        </div>
+                        <button class="btn btn-icon" id="copyBtn" title="Copy Report">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="confidence-box">
+                        <div class="conf-lead">
+                            <span>Confidence Level</span>
+                            <span id="confidenceValue">0%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Row -->
+            <section class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-icon">🧪</span>
+                    <span class="stat-label">Model: Naive Bayes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-label">Response: < 50ms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🛡️</span>
+                    <span class="stat-label">100% Private</span>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section">
+                <div class="section-head">
+                    <h3>Recent Intelligence</h3>
+                    <button class="btn btn-text" id="refreshHistory">Refresh Log</button>
+                </div>
+                
+                <div class="history-container" id="historyTableWrapper">
+                    <div id="emptyHistory" class="empty-state">
+                        <p>No recent analysis logs found.</p>
+                    </div>
+                    <div id="historyTable" class="history-log hidden">
+                        <!-- Rows injected via JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2026 FakeDetect AI. Secured by advanced machine learning.</p>
+        </footer >
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
